@@ -84,8 +84,22 @@
             table.table td a.view {
                 color: #03A9F4;
             }
+            .table-title .btn span {
+                float: left;
+            }
             table.table td a.edit {
                 color: #FFC107;
+            }
+            .table-title .btn {
+                float: left;
+                font-size: 15px;
+                min-width: 50px;
+                margin-left: -10px;
+            }
+            .table-title .btn i {
+                float: left;
+                font-size: 21px;
+                margin-right: 5px;
             }
             table.table td a.delete {
                 color: #E34724;
@@ -134,13 +148,13 @@
             .modal .modal-dialog {
                 max-width: 400px;
                 border-radius: 6px;
-                
+
             }
             .modal .modal-header, .modal .modal-body, .modal .modal-footer {
                 padding: 20px 30px;
             }
             .modal .modal-content {
-                border-radius: 3px;
+                border-radius: 6px;
                 font-size: 14px;
             }
             .modal .modal-footer {
@@ -208,9 +222,12 @@
                 <div class="table-wrapper">
                     <div class="table-title">
                         <div class="row">
-                            <div class="col-sm-8"><h2>Database E-KTP</h2></div>
+                            <div class="col-sm-8">
+                                <h2>Database E-KTP</h2>
+                                <a href="#adddatamodal" class="btn btn-outline-default" title="Add Data" data-toggle="modal"><i class="material-icons" title="Add Data">&#xE147;</i><span>Add New Data</span></a>
+                            </div>
                             <div class="col-sm-4">
-                                <button class="btn btn-outline-primary" >Add Data</button>
+
                                 <div class="search-box">
                                     <i class="material-icons">&#xE8B6;</i>
                                     <input type="text" class="form-control" placeholder="Search&hellip;">
@@ -236,9 +253,9 @@
                                 <td th:text="${#dates.format(ktpData.tgllahir,'dd MMMM yyyy')}"></td>
                                 <td th:text="${ktpData.alamat}"></td>
                                 <td>
-                                    <a href="#" class="view" title="View" data-toggle="tooltip"><i class="material-icons">&#xE417;</i></a>
-                                    <a href="#" class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
-                                    <a href="#deleteEmployeeModal" class="delete" title="Delete" data-toggle="modal"><i class="material-icons">&#xE872;</i></a>
+                                    <a href="#viewdatamodal" class="view" title="View" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="View">&#xE417;</i></a>
+                                    <a href="#editdatamodal" class="edit" title="Edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                                    <a href="#hapusdatamodal" class="delete" title="Delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
                                 </td>
                             </tr>
                         </tbody>
@@ -258,8 +275,8 @@
                 </div>
             </div>  
         </div>
-
-        <div id="deleteEmployeeModal" class="modal fade">
+        <!-- Hapus data modal -->
+        <div id="hapusdatamodal" class="modal fade">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <form>
@@ -274,6 +291,116 @@
                         <div class="modal-footer">
                             <input type="button" class="btn btn-outline-default" data-dismiss="modal" value="Batal">
                             <input type="submit" class="btn btn-outline-danger" value="Hapus">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Edit data modal -->
+
+        <div id="editdatamodal" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <form>
+                        <div class="modal-header">						
+                            <h4 class="modal-title">Edit Data E-KTP</h4>
+                        </div>
+                        <div class="modal-body">					
+                            <div class="form-group">
+                                <label>NIK</label>
+                                <input type="text" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Nama</label>
+                                <input type="email" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Tanggal Lahir</label>
+                                <input type="date" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Alamat</label>
+
+                                <textarea class="form-control" required></textarea>
+                            </div>					
+                        </div>
+                        <div class="modal-footer">
+                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Batal">
+                            <input type="submit" class="btn btn-outline-success" value="Simpan">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Add data modal -->
+
+        <div id="adddatamodal" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <form>
+                        <div class="modal-header">						
+                            <h4 class="modal-title">Tambah Data E-KTP</h4>
+                        </div>
+                        <div class="modal-body">					
+                            <div class="form-group">
+                                <label>NIK</label>
+                                <input type="text" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Nama</label>
+                                <input type="email" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Tanggal Lahir</label>
+                                <input type="date" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Alamat</label>
+
+                                <textarea class="form-control" required></textarea>
+                            </div>					
+                        </div>
+                        <div class="modal-footer">
+                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Batal">
+                            <input type="submit" class="btn btn-outline-success" value="Simpan">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- View data modal -->
+
+        <div id="viewdatamodal" class="modal fade">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <form>
+                        <div class="modal-header">						
+                            <h4 class="modal-title">Lihat Data E-KTP</h4>
+
+                        </div>
+                        <div class="modal-body" th:each="ktpData:${goData}">					
+                            <div class="form-group">
+                                <label>NIK</label><br>
+                                <td th:text="${ktpData.noktp}"></td>
+                            </div>
+                            <div class="form-group">
+                                <label>Nama</label><br>
+                                <td th:text="${ktpData.nama}"></td>
+                            </div>
+                            <div class="form-group">
+                                <label>Tanggal Lahir</label><br>
+                                <td th:text="${#dates.format(ktpData.tgllahir,'dd MMMM yyyy')}"></td>
+                            </div>
+                            <div class="form-group">
+                                <label>Alamat</label><br>                                
+                                <td th:text="${ktpData.alamat}"></td>
+                            </div>					
+                        </div>
+                        <div class="modal-footer">
+                            <input type="submit" class="btn btn-outline-primary" value="Kembali">
                         </div>
                     </form>
                 </div>
