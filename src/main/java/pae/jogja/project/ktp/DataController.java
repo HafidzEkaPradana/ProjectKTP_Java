@@ -23,17 +23,28 @@ public class DataController {
     @RequestMapping("/data")
     //@ResponseBody
     public String getDataKTP(Model model){
+        
+        int record = datactrl.getDataCount();
+        
         try{
-            newdata = datactrl.findDataEntities(0,1);
+            newdata = datactrl.findDataEntities().subList(0, record);
         }
         catch(Exception e){}
         model.addAttribute("goData", newdata);
+        model.addAttribute("record", record);
         return "database";
 
     }
-    
-    @RequestMapping("/")
-    public String getMain(){
-        return "index";
+    @RequestMapping("/edit")
+    public String editData(){
+        return "edit";
+    }
+    @RequestMapping("/view")
+    public String viewData(){
+        return "view";
+    }
+    @RequestMapping("/delete")
+    public String deleteData(){
+        return "delete";
     }
 }
