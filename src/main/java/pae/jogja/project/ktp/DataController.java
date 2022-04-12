@@ -17,19 +17,23 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 @Controller
 public class DataController {
-    //DataJpaController datactrl = new DataJpaController();
-    //List<Data> newdata = new ArrayList<>();
+    DataJpaController datactrl = new DataJpaController();
+    List<Data> newdata = new ArrayList<>();
     
     @RequestMapping("/data")
-    @ResponseBody
+    //@ResponseBody
     public String getDataKTP(Model model){
-        
         try{
-            //newdata = datactrl.findDataEntities(0,0);
+            newdata = datactrl.findDataEntities(0,1);
         }
-        catch(Exception e){
-            //model.addAttribute("goData", datactrl);
-        }
+        catch(Exception e){}
+        model.addAttribute("goData", newdata);
         return "database";
+
+    }
+    
+    @RequestMapping("/")
+    public String getMain(){
+        return "index";
     }
 }

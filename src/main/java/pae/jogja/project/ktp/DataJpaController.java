@@ -10,6 +10,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
+import javax.persistence.Persistence;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import pae.jogja.project.ktp.exceptions.NonexistentEntityException;
@@ -24,12 +25,15 @@ public class DataJpaController implements Serializable {
     public DataJpaController(EntityManagerFactory emf) {
         this.emf = emf;
     }
-    private EntityManagerFactory emf = null;
+    private EntityManagerFactory emf = Persistence.createEntityManagerFactory("pae.jogja_project.ktp_jar_0.0.1-SNAPSHOTPU");
 
     public EntityManager getEntityManager() {
         return emf.createEntityManager();
     }
 
+    public DataJpaController() {
+    }
+    
     public void create(Data data) throws PreexistingEntityException, Exception {
         EntityManager em = null;
         try {
