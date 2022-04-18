@@ -4,12 +4,22 @@
  */
 package pae.jogja.project.ktp;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Set;
+import javax.servlet.http.HttpServletRequest;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  *
@@ -32,16 +42,42 @@ public class DataController {
         catch(Exception e){}
         model.addAttribute("goData", newdata);
         model.addAttribute("record", record);
+        
         return "database";
 
     }
+    
+    @RequestMapping(value="/newdata", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    public String newData(@RequestParam("gambar")MultipartFile file, HttpServletRequest data) throws ParseException, Exception{
+        String result = "";
+        Data datadat = new Data();
+        
+        String idInput = data.getParameter("id");
+        int iid = Integer.parseInt(idInput);
+        String nonik = data.getParameter("noktp");
+        String namaInput = data.getParameter("name");
+        String alamatInput = data.getParameter("alamat");
+        String tanggal = data.getParameter("");
+        Date date = new SimpleDateFormat("yyyy-MM-dd").parse(tanggal);
+        String filename = StringUtils.cleanPath(file.getOriginalFilename());
+        byte[] image = file.getBytes();
+        
+        
+        datadat.setId(iid);
+        datadat.setNama(namaInput);
+        datadat.setNoktp(nonik);
+        datadat.setTgllahir(date);
+        datadat.setAlamat(alamatInput);
+        datadat.setFoto(image);
+        
+        datactrl.create(datadat);
+        
+        return "database";
+    }
+    
     @RequestMapping("/edit")
     public String editData(){
         return "edit";
-    }
-    @RequestMapping("/view")
-    public String viewData(){
-        return "view";
     }
     @RequestMapping("/delete")
     public String deleteData(){
