@@ -15,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 //import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
+import pae.jogja.project.ktp.exceptions.NonexistentEntityException;
 //import org.springframework.web.bind.annotation.RequestParam;
 //import org.springframework.web.multipart.MultipartFile;
 
@@ -97,8 +98,22 @@ public class DataController {
         return "edit";
     }
 
-    @RequestMapping("/delete")
-    public String deleteData() {
+    @RequestMapping("/delete/{id}")
+    public String deleteData(HttpServletRequest dataD) throws NonexistentEntityException {
+        
+        
+        int deleteID = data.getId();
+            
+        datactrl.destroy(deleteID);
+        
+        return "database";
+    }
+    
+    @RequestMapping("/view")
+    public String viewData(HttpServletRequest dataD){
+        
+        data.getId();
+        //datactrl.findData(iid);
         return "database";
     }
 }

@@ -227,7 +227,7 @@
                         <div class="row">
                             <div class="col-sm-8">
                                 <h2>Database E-KTP</h2>
-                                <a href="/create" class="btn-default" title="Add Data" ><span>Add New Data</span></a>
+                                <a href="/create" class="btn btn-default" title="Add Data" ><span style="color: #83BD75;">Add New Data</span></a>
                             </div>
                             <div class="col-sm-4">
 
@@ -242,15 +242,17 @@
                     <table class="table table-striped table-hover table-bordered">
                         <thead>
                             <tr >
+                                <th>ID</th>
                                 <th>NIK</th>
                                 <th>Nama</th>
                                 <th>Tanggal Lahir</th>
                                 <th>Alamat</th>
-                                <th>Actions</th>
+                                <th style="text-align: center">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr th:each="ktpData:${goData}">
+                                <td th:text="${ktpData.id}"></td>
                                 <td th:text="${ktpData.noktp}"></td>
                                 <td th:text="${ktpData.nama}"></td>
                                 <td th:text="${#dates.format(ktpData.tgllahir,'dd MMMM yyyy')}"></td>
@@ -263,23 +265,12 @@
                             </tr>
                         </tbody>
                     </table>
-                    <div class="clearfix">
-                        <div class="hint-text"><b>5</b> dari <b>25</b> halaman</div>
-                        <ul class="pagination">
-                            <li class="page-item disabled"><a href="#"><i class="fa fa-angle-double-left"></i></a></li>
-                            <li class="page-item"><a href="#" class="page-link">1</a></li>
-                            <li class="page-item"><a href="#" class="page-link">2</a></li>
-                            <li class="page-item"><a href="#" class="page-link">3</a></li>
-                            <li class="page-item"><a href="#" class="page-link">4</a></li>
-                            <li class="page-item"><a href="#" class="page-link">5</a></li>
-                            <li class="page-item"><a href="#" class="page-link"><i class="fa fa-angle-double-right"></i></a></li>
-                        </ul>
-                    </div>
+                    
                 </div>
             </div>  
         </div>
         <!-- Hapus data modal -->
-        <div id="hapusdatamodal" class="modal fade">
+        <div id="hapusdatamodal" action="/delete/{id}" class="modal fade">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <form>
@@ -293,7 +284,7 @@
                         </div>
                         <div class="modal-footer">
                             <input type="button" class="btn btn-outline-default" data-dismiss="modal" value="Batal">
-                            <input type="submit" class="btn btn-outline-danger" value="Hapus">
+                            <button type="submit" class="btn btn-outline-danger">Hapus</button>
                         </div>
                     </form>
                 </div>
@@ -316,7 +307,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Nama</label>
-                                <input type="email" class="form-control" required>
+                                <input type="text" class="form-control" required>
                             </div>
                             <div class="form-group">
                                 <label>Tanggal Lahir</label>
@@ -340,7 +331,7 @@
 
         <!-- View data modal -->
 
-        <div id="viewdatamodal" class="modal fade" >
+        <div id="viewdatamodal" action="/view" class="modal fade" >
             <div class="modal-dialog">
                 <div class="modal-content">
                     <form>
