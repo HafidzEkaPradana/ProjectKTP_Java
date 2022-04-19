@@ -27,6 +27,7 @@ import org.springframework.web.multipart.MultipartFile;
  */
 @Controller
 public class DataController {
+    
     DataJpaController datactrl = new DataJpaController();
     List<Data> newdata = new ArrayList<>();
     
@@ -50,7 +51,7 @@ public class DataController {
     @RequestMapping("/create")
     public String createData(){
         
-        return "create.html";
+        return "create";
     }
     
     @RequestMapping(value="/newdata", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
