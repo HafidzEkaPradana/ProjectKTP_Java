@@ -47,7 +47,13 @@ public class DataController {
 
     }
     
-    @RequestMapping(value="/newdata", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    @RequestMapping("/create")
+    public String createData(){
+        
+        return "create.html";
+    }
+    
+    @RequestMapping(value="/newdata", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public String newData(@RequestParam("gambar")MultipartFile file, HttpServletRequest data) throws ParseException, Exception{
         String result = "";
         Data datadat = new Data();
@@ -56,9 +62,15 @@ public class DataController {
         int iid = Integer.parseInt(idInput);
         String nonik = data.getParameter("noktp");
         String namaInput = data.getParameter("name");
-        String alamatInput = data.getParameter("alamat");
         String tanggal = data.getParameter("");
         Date date = new SimpleDateFormat("yyyy-MM-dd").parse(tanggal);
+        String jenis = data.getParameter("jenis");
+        String alamatInput = data.getParameter("alamat");
+        String agama = data.getParameter("agama");
+        String status = data.getParameter("status");
+        String pekerjaan = data.getParameter("kerja");
+        String warganegara = data.getParameter("warganegara");
+        String berlaku = data.getParameter("berlaku");
         String filename = StringUtils.cleanPath(file.getOriginalFilename());
         byte[] image = file.getBytes();
         
@@ -67,7 +79,13 @@ public class DataController {
         datadat.setNama(namaInput);
         datadat.setNoktp(nonik);
         datadat.setTgllahir(date);
+        datadat.setJeniskelamin(jenis);
         datadat.setAlamat(alamatInput);
+        datadat.setAgama(agama);
+        datadat.setStatus(status);
+        datadat.setPekerjaan(pekerjaan);
+        datadat.setKewarganegaraan(warganegara);
+        datadat.setBerlakuhingga(berlaku);
         datadat.setFoto(image);
         
         datactrl.create(datadat);
