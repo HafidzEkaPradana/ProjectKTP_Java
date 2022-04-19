@@ -10,11 +10,14 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
+import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 //import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import pae.jogja.project.ktp.exceptions.NonexistentEntityException;
 //import org.springframework.web.bind.annotation.RequestParam;
 //import org.springframework.web.multipart.MultipartFile;
@@ -29,6 +32,9 @@ public class DataController {
     DataJpaController datactrl = new DataJpaController();
     Data data = new Data();
     List<Data> newdata = new ArrayList<>();
+    
+    @Autowired
+    private DataRepository dataRepo;
 
     @RequestMapping("/data")
     //@ResponseBody
@@ -55,7 +61,7 @@ public class DataController {
 
     @RequestMapping("/newdata")
     public String newData(HttpServletRequest data) throws ParseException, Exception {
-        String result = "";
+
         Data datadat = new Data();
 
         String idInput = data.getParameter("id");
@@ -71,6 +77,7 @@ public class DataController {
         String pekerjaan = data.getParameter("kerja");
         String warganegara = data.getParameter("warganegara");
         String berlaku = "Seumur Hidup";
+        
         //String filename = StringUtils.cleanPath(file.getOriginalFilename());
         //filename = filename.toLowerCase().replaceAll(" ", "-");
         //byte[] image = file.getBytes();
@@ -95,23 +102,17 @@ public class DataController {
 
     @RequestMapping("/edit")
     public String editData() {
-        return "edit";
+        return "editktp";
     }
 
-    @RequestMapping("/delete/{id}")
-    public String deleteData(HttpServletRequest dataD) throws NonexistentEntityException {
-        
-        
-        int deleteID = data.getId();
-            
-        datactrl.destroy(deleteID);
-        
+    @GetMapping("/delete")
+    public String deleteData(@RequestParam Long ktpID) throws NonexistentEntityException{
+        dataRepo.deleteById(ktpID);
         return "database";
     }
     
     @RequestMapping("/view")
     public String viewData(HttpServletRequest dataD){
-        
         data.getId();
         //datactrl.findData(iid);
         return "database";

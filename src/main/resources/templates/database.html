@@ -259,8 +259,8 @@
                                 <td th:text="${ktpData.alamat}"></td>
                                 <td>
                                     <a href="#viewdatamodal" class="view" title="View" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="View">&#xE417;</i></a>
-                                    <a href="#editdatamodal" class="edit" title="Edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-                                    <a href="#hapusdatamodal" class="delete" title="Delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                                    <a href="/edit" class="edit" title="Edit"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                                    <a th:href="@{/delete(${ktpData.id})}" class="delete" title="Delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
                                 </td>
                             </tr>
                         </tbody>
@@ -270,7 +270,7 @@
             </div>  
         </div>
         <!-- Hapus data modal -->
-        <div id="hapusdatamodal" action="/delete/{id}" class="modal fade">
+        <div id="hapusdatamodal" action="/delete" class="modal fade">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <form>
