@@ -258,9 +258,9 @@
                                 <td th:text="${#dates.format(ktpData.tgllahir,'dd MMMM yyyy')}"></td>
                                 <td th:text="${ktpData.alamat}"></td>
                                 <td>
-                                    <a href="#viewdatamodal" class="view" title="View" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="View">&#xE417;</i></a>
+                                    <a th:href="@{/view(${ktpData.id})}" class="view" title="View" data-toggle="tooltip"><i class="material-icons" data-toggle="tooltip" title="View">&#xE417;</i></a>
                                     <a href="/edit" class="edit" title="Edit"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-                                    <a th:href="@{/delete(${ktpData.id})}" class="delete" title="Delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                                    <a th:href="@{/delete(${ktpData.id})}" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
                                 </td>
                             </tr>
                         </tbody>
@@ -276,7 +276,6 @@
                     <form>
                         <div class="modal-header">						
                             <h4 class="modal-title">Hapus Data E-KTP</h4>
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                         </div>
                         <div class="modal-body">					
                             <p>Apakah Anda yakin ingin menghapus Data E-KTP ini??</p>
@@ -284,50 +283,12 @@
                         </div>
                         <div class="modal-footer">
                             <input type="button" class="btn btn-outline-default" data-dismiss="modal" value="Batal">
-                            <button type="submit" class="btn btn-outline-danger">Hapus</button>
+                            <a href="/delete" type="submit" class="btn btn-outline-danger">Hapus</a>
                         </div>
                     </form>
                 </div>
             </div>
         </div>
-
-        <!-- Edit data modal -->
-
-        <div id="editdatamodal" class="modal fade">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <form>
-                        <div class="modal-header">						
-                            <h4 class="modal-title">Edit Data E-KTP</h4>
-                        </div>
-                        <div class="modal-body">					
-                            <div class="form-group">
-                                <label>NIK</label>
-                                <input type="text" class="form-control" required>
-                            </div>
-                            <div class="form-group">
-                                <label>Nama</label>
-                                <input type="text" class="form-control" required>
-                            </div>
-                            <div class="form-group">
-                                <label>Tanggal Lahir</label>
-                                <input type="date" class="form-control" required>
-                            </div>
-                            <div class="form-group">
-                                <label>Alamat</label>
-
-                                <textarea class="form-control" required></textarea>
-                            </div>					
-                        </div>
-                        <div class="modal-footer">
-                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Batal">
-                            <input type="submit" class="btn btn-outline-success" value="Simpan">
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-
 
         <!-- View data modal -->
 

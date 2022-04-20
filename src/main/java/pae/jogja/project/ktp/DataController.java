@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 //import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,9 +33,6 @@ public class DataController {
     DataJpaController datactrl = new DataJpaController();
     Data data = new Data();
     List<Data> newdata = new ArrayList<>();
-    
-    @Autowired
-    private DataRepository dataRepo;
 
     @RequestMapping("/data")
     //@ResponseBody
@@ -77,11 +75,10 @@ public class DataController {
         String pekerjaan = data.getParameter("kerja");
         String warganegara = data.getParameter("warganegara");
         String berlaku = "Seumur Hidup";
-        
+
         //String filename = StringUtils.cleanPath(file.getOriginalFilename());
         //filename = filename.toLowerCase().replaceAll(" ", "-");
         //byte[] image = file.getBytes();
-
         datadat.setId(iid);
         datadat.setNoktp(nonik);
         datadat.setNama(namaInput);
@@ -106,15 +103,14 @@ public class DataController {
     }
 
     @GetMapping("/delete")
-    public String deleteData(@RequestParam Long ktpID) throws NonexistentEntityException{
-        dataRepo.deleteById(ktpID);
+    public String deleteData() throws NonexistentEntityException {
+        int id = datactrl.getDataCount();
+        datactrl.destroy(id);
         return "database";
     }
-    
+
     @RequestMapping("/view")
-    public String viewData(HttpServletRequest dataD){
-        data.getId();
-        //datactrl.findData(iid);
-        return "database";
+    public String viewData(Model model) {
+        return "viewktp";
     }
 }
