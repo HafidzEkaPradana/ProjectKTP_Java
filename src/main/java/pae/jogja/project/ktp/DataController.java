@@ -97,8 +97,8 @@ public class DataController {
         return "database";
     }
 
-    @RequestMapping("/edit")
-    public String editData(Model model) {
+    @RequestMapping("/editpage")
+    public String editPage(Model model) {
         int record = datactrl.getDataCount();
 
         try {
@@ -110,16 +110,53 @@ public class DataController {
         return "editktp";
     }
 
+    @RequestMapping("/edit")
+    public String editData(Model model, HttpServletRequest data) throws ParseException, Exception {
+
+        Data datadat = new Data();
+
+        String idInput = data.getParameter("id");
+        int iid = Integer.parseInt(idInput);
+        String nonik = data.getParameter("noktp");
+        String namaInput = data.getParameter("name");
+        String tanggal = data.getParameter("tanggal");
+        Date date = new SimpleDateFormat("yyyy-MM-dd").parse(tanggal);
+        String jenis = data.getParameter("jenis");
+        String alamatInput = data.getParameter("alamat");
+        String agama = data.getParameter("agama");
+        String status = data.getParameter("status");
+        String pekerjaan = data.getParameter("kerja");
+        String warganegara = data.getParameter("warganegara");
+        String berlaku = "Seumur Hidup";
+
+        datadat.setId(iid);
+        datadat.setNoktp(nonik);
+        datadat.setNama(namaInput);
+        datadat.setTgllahir(date);
+        datadat.setJeniskelamin(jenis);
+        datadat.setAlamat(alamatInput);
+        datadat.setAgama(agama);
+        datadat.setStatus(status);
+        datadat.setPekerjaan(pekerjaan);
+        datadat.setKewarganegaraan(warganegara);
+        datadat.setBerlakuhingga(berlaku);
+        //datadat.setFoto(image);
+
+        datactrl.edit(datadat);
+
+        return "database";
+    }
+
     @GetMapping("/delete")
     public String deleteData(Integer id) throws NonexistentEntityException {
-        datactrl.findData(id);
-        datactrl.destroy(id);
+        int idD = datactrl.getDataCount();
+        datactrl.destroy(idD);
         return "database";
     }
 
     @RequestMapping("/view")
     public String viewData(Model model) {
-                int record = datactrl.getDataCount();
+        int record = datactrl.getDataCount();
 
         try {
             newdata = datactrl.findDataEntities().subList(0, record);
@@ -127,7 +164,7 @@ public class DataController {
         }
         model.addAttribute("goData", newdata);
         model.addAttribute("record", record);
-        
+
         return "viewktp";
     }
 }
