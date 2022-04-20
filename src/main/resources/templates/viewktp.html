@@ -144,6 +144,13 @@
                 margin-top: 6px;
                 font-size: 95%;
             }
+            .modal form label {
+                font-weight: normal;
+            }
+            
+            #styleModal label{
+                color: #FFC107;
+            }
         </style>
         <script>
             $(document).ready(function () {
@@ -175,17 +182,65 @@
                             </a>
                         </li>
                     </ul>
-                    <form class="d-flex">
-                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-success" type="submit">Search</button>
-                    </form>
+                    
                 </div>
             </div>
         </nav>
         <div class="container-xl">
             <div class="table-responsive">
                 <div class="table-wrapper">
-                    
+                    <form id="styleModal">
+                        <div class="modal-header">						
+                            <h4 class="modal-title">Lihat Data E-KTP</h4>
+
+                        </div>
+                        <div class="modal-body" th:each="ktpData:${goData}">					
+                            <div class="form-group">
+                                <label>NIK</label><br>
+                                <td th:text="${ktpData.noktp}"></td>
+                            </div>
+                            <div class="form-group">
+                                <label>Nama</label><br>
+                                <td th:text="${ktpData.nama}"></td>
+                            </div>
+                            <div class="form-group">
+                                <label>Tanggal Lahir</label><br>
+                                <td th:text="${#dates.format(ktpData.tgllahir,'dd MMMM yyyy')}"></td>
+                            </div>
+                            <div class="form-group">
+                                <label>Jenis Kelamin</label><br>
+                                <td th:text="${ktpData.jeniskelamin}"></td>
+                            </div>
+                            <div class="form-group">
+                                <label>Alamat</label><br>                                
+                                <td th:text="${ktpData.alamat}"></td>
+                            </div>
+                            <div class="form-group">
+                                <label>Agama</label><br>
+                                <td th:text="${ktpData.agama}"></td>
+                            </div>
+                            <div class="form-group">
+                                <label>Status</label><br>
+                                <td th:text="${ktpData.status}"></td>
+                            </div>
+                            <div class="form-group">
+                                <label>Pekerjaan</label><br>
+                                <td th:text="${ktpData.pekerjaan}"></td>
+                            </div>
+                            <div class="form-group">
+                                <label>Kewarganegaraan</label><br>
+                                <td th:text="${ktpData.kewarganegaraan}"></td>
+                            </div>
+                            <div class="form-group">
+                                <label>Masa Berlaku</label><br>
+                                <td th:text="${ktpData.berlakuhingga}"></td>
+                            </div>
+                            <hr>
+                        </div>
+                        <div class="modal-footer">
+                            <a class="btn btn-default px-4 gap-3" href="/data" value="Kembali">Kembali</a>
+                        </div>
+                    </form>
                 </div>
             </div>  
         </div>

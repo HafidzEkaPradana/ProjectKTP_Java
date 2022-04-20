@@ -179,6 +179,7 @@
             .modal form label {
                 font-weight: normal;
             }
+            
         </style>
         <script>
             $(document).ready(function () {
@@ -286,42 +287,6 @@
                     </form>
                 </div>
             </div>
-        </div>
-
-        <!-- View data modal -->
-
-        <div id="viewdatamodal" action="/view" class="modal fade" >
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <form>
-                        <div class="modal-header">						
-                            <h4 class="modal-title">Lihat Data E-KTP</h4>
-
-                        </div>
-                        <div class="modal-body" th:each="ktpData:${goData}">					
-                            <div class="form-group">
-                                <label>NIK</label><br>
-                                <td th:text="${ktpData.noktp}"></td>
-                            </div>
-                            <div class="form-group">
-                                <label>Nama</label><br>
-                                <td th:text="${ktpData.nama}"></td>
-                            </div>
-                            <div class="form-group">
-                                <label>Tanggal Lahir</label><br>
-                                <td th:text="${#dates.format(ktpData.tgllahir,'dd MMMM yyyy')}"></td>
-                            </div>
-                            <div class="form-group">
-                                <label>Alamat</label><br>                                
-                                <td th:text="${ktpData.alamat}"></td>
-                            </div>					
-                        </div>
-                        <div class="modal-footer">
-                            <input type="submit" class="btn btn-outline-primary" value="Kembali">
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
+        </div> 
     </body>
 </html>

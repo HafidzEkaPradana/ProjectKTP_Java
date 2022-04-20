@@ -144,7 +144,7 @@
                 margin-top: 6px;
                 font-size: 95%;
             }
-                        /* Modal styles */
+            /* Modal styles */
             .modal .modal-dialog {
                 max-width: 400px;
                 border-radius: 6px;
@@ -233,49 +233,49 @@
                             <div class="modal-body">
                                 <div class="form-group">
                                     <label>ID</label>
-                                    <input type="text" name="id" class="form-control" required>
+                                    <input type="text" name="id" th:value="${ktpData.id}" class="form-control" required>
                                 </div>
                                 <div class="form-group">
                                     <label>NIK</label>
-                                    <input type="text" name="noktp" class="form-control" required>
+                                    <input type="text" name="noktp" th:value="${ktpData.noktp}" class="form-control" required>
                                 </div>
                                 <div class="form-group">
                                     <label>Nama</label>
-                                    <input type="text" name="name" class="form-control" required>
+                                    <input type="text" th:value="${ktpData.nama}" name="name" class="form-control" required>
                                 </div>
                                 <div class="form-group">
                                     <label>Tanggal Lahir</label>
-                                    <input type="date" name="tanggal" class="form-control" required>
+                                    <input type="date" th:value="${#dates.format(ktpData.tgllahir,'dd MMMM yyyy')}" name="tanggal" class="form-control" required>
                                 </div>
                                 <div class="form-group">
                                     <label>Jenis Kelamin</label>
                                     <label>( Laki laki / Perempuan )</label>
-                                    <input type="text" name="jenis" class="form-control" required>
+                                    <input type="text" th:value="${ktpData.jeniskelamin}" name="jenis" class="form-control" required>
                                 </div>
                                 <div class="form-group">
                                     <label>Alamat</label>
-                                    <textarea class="form-control" name="alamat" required></textarea>
+                                    <textarea class="form-control" th:value="${ktpData.alamat}" name="alamat" required></textarea>
                                 </div>
                                 <div class="form-group">
                                     <label>Agama</label>
-                                    <input type="text" name="agama" class="form-control" required>
+                                    <input type="text" th:value="${ktpData.agama}" name="agama" class="form-control" required>
                                 </div>
                                 <div class="form-group">
                                     <label>Status</label>
                                     <label>( Kawin / Belum Kawin )</label>
-                                    <input type="text" name="status" class="form-control" required>
+                                    <input type="text" th:value="${ktpData.status}" name="status" class="form-control" required>
                                 </div>
                                 <div class="form-group">
                                     <label>Pekerjaan</label>
-                                    <input type="text" name="kerja" class="form-control">
+                                    <input type="text" th:value="${ktpData.pekerjaan}" name="kerja" class="form-control">
                                 </div>
                                 <div class="form-group">
                                     <label>Kewarganegaraaan</label>
-                                    <input type="text"  name="warganegara" class="form-control" required>
+                                    <input type="text" th:value="${ktpData.kewarganegaraan}" name="warganegara" class="form-control" required>
                                 </div>
                                 <div class="form-group">
                                     <label>Masa Berlaku</label>
-                                    <input type="text" name="barlaku" class="form-control" value="Seumur Hidup" disabled>
+                                    <input type="text" th:value="${ktpData.berlakuhingga}" name="barlaku" class="form-control" disabled>
                                 </div>
                             </div>
                             <div class="modal-footer">

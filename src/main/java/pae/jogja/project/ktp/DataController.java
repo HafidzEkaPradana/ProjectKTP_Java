@@ -119,7 +119,15 @@ public class DataController {
 
     @RequestMapping("/view")
     public String viewData(Model model) {
+                int record = datactrl.getDataCount();
 
+        try {
+            newdata = datactrl.findDataEntities().subList(0, record);
+        } catch (Exception e) {
+        }
+        model.addAttribute("goData", newdata);
+        model.addAttribute("record", record);
+        
         return "viewktp";
     }
 }
