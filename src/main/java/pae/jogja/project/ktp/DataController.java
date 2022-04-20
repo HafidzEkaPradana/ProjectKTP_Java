@@ -98,19 +98,28 @@ public class DataController {
     }
 
     @RequestMapping("/edit")
-    public String editData() {
+    public String editData(Model model) {
+        int record = datactrl.getDataCount();
+
+        try {
+            newdata = datactrl.findDataEntities().subList(0, record);
+        } catch (Exception e) {
+        }
+        model.addAttribute("goData", newdata);
+        model.addAttribute("record", record);
         return "editktp";
     }
 
     @GetMapping("/delete")
-    public String deleteData() throws NonexistentEntityException {
-        int id = datactrl.getDataCount();
+    public String deleteData(Integer id) throws NonexistentEntityException {
+        datactrl.findData(id);
         datactrl.destroy(id);
         return "database";
     }
 
     @RequestMapping("/view")
     public String viewData(Model model) {
+
         return "viewktp";
     }
 }
