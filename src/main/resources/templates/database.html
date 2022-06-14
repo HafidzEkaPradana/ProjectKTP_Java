@@ -144,41 +144,6 @@
                 margin-top: 6px;
                 font-size: 95%;
             }
-            /* Modal styles */
-            .modal .modal-dialog {
-                max-width: 400px;
-                border-radius: 6px;
-
-            }
-            .modal .modal-header, .modal .modal-body, .modal .modal-footer {
-                padding: 20px 30px;
-            }
-            .modal .modal-content {
-                border-radius: 6px;
-                font-size: 14px;
-            }
-            .modal .modal-footer {
-                background: #ecf0f1;
-                border-radius: 0 0 3px 3px;
-            }
-            .modal .modal-title {
-                display: inline-block;
-            }
-            .modal .form-control {
-                border-radius: 2px;
-                box-shadow: none;
-                border-color: #dddddd;
-            }
-            .modal textarea.form-control {
-                resize: vertical;
-            }
-            .modal .btn {
-                border-radius: 2px;
-                min-width: 100px;
-            }
-            .modal form label {
-                font-weight: normal;
-            }
             
         </style>
         <script>
@@ -245,6 +210,7 @@
                                 <th>Nama</th>
                                 <th>Tanggal Lahir</th>
                                 <th>Alamat</th>
+                                <th>Foto</th>
                                 <th style="text-align: center">Actions</th>
                             </tr>
                         </thead>
@@ -254,10 +220,11 @@
                                 <td th:text="${ktpData.nama}"></td>
                                 <td th:text="${#dates.format(ktpData.tgllahir,'dd MMM yyyy')}"></td>
                                 <td th:text="${ktpData.alamat}"></td>
+                                <td th:text="${ktpData.foto}"></td>
                                 <td>
                                     <a th:href="@{/view/{id}(id=${ktpData.id})}" class="view" title="View" data-toggle="tooltip"><i class="material-icons" data-toggle="tooltip" title="View">&#xE417;</i></a>
                                     <a th:href="@{/edit/{id}(id=${ktpData.id})}" class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-                                    <a th:href="@{/delete/{id}(id=${ktpData.id})}" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                                    <a th:href="@{/delete/{id}(id=${ktpData.id})}" class="delete" onclick="return confirm('Yakin Mau Dihapus?')" title="Delete" data-toggle="tooltip"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
                                 </td>
                             </tr>
                         </tbody>
@@ -266,25 +233,5 @@
                 </div>
             </div>  
         </div>
-        <!-- Hapus data modal -->
-        <div id="hapusdatamodal" action="/delete" class="modal fade">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <form>
-                        <div class="modal-header">						
-                            <h4 class="modal-title">Hapus Data E-KTP</h4>
-                        </div>
-                        <div class="modal-body">					
-                            <p>Apakah Anda yakin ingin menghapus Data E-KTP ini??</p>
-                            <p class="text-warning"><small>Tindakan ini tidak bisa dibatalkan.</small></p>
-                        </div>
-                        <div class="modal-footer">
-                            <input type="button" class="btn btn-outline-default" data-dismiss="modal" value="Batal">
-                            <a href="/delete" type="submit" class="btn btn-outline-danger">Hapus</a>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div> 
     </body>
 </html>

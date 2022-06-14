@@ -225,7 +225,7 @@
         <div class="container-xl">
             <div class="table-responsive">
                 <div class="table-wrapper" >
-                    <form action="/newdata">
+                    <form th:action="@{/newdata}" th:object="${data}" method="post" enctype="multipart/form-data">
                         <div class="modal-header">						
                             <h4 class="modal-title">Tambah Data E-KTP</h4>
                         </div>
@@ -275,6 +275,11 @@
                             <div class="form-group">
                                 <label>Masa Berlaku</label>
                                 <input type="text" name="berlaku" class="form-control" value="Seumur Hidup" disabled>
+                            </div>
+                            <div class="form-group">
+                                <label>Foto</label>
+                                <input type="file" th:field="*{foto}" name="gambar" class="form-control" accept="image/png, image/jpeg, image/jpg" style="margin-bottom:10px " onchange="loadFile(event)">
+                                <p><img id="output" width="200" /></p><hr>
                             </div>
                         </div>
                         <div class="modal-footer">

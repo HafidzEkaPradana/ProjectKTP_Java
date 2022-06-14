@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package pae.jogja.project.ktp;
 
 import java.io.Serializable;
@@ -16,10 +13,6 @@ import javax.persistence.criteria.Root;
 import pae.jogja.project.ktp.exceptions.NonexistentEntityException;
 import pae.jogja.project.ktp.exceptions.PreexistingEntityException;
 
-/**
- *
- * @author user
- */
 public class DataJpaController implements Serializable {
 
     public DataJpaController(EntityManagerFactory emf) {
