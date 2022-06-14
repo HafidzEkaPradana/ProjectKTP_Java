@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 //import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pae.jogja.project.ktp.exceptions.NonexistentEntityException;
@@ -140,11 +141,11 @@ public class DataController {
         return "database";
     }
 
-    @GetMapping("/delete")
-    public String deleteData(Integer id) throws NonexistentEntityException {
-        int idD = datactrl.getDataCount();
-        datactrl.destroy(idD);
-        return "database";
+    @GetMapping("/delete/{id}")
+    public String deleteData(@PathVariable(value = "id")int id) throws NonexistentEntityException {
+        //int idD = datactrl.getDataCount();
+        datactrl.destroy(id);
+        return "database/data";
     }
 
     @RequestMapping("/view")
