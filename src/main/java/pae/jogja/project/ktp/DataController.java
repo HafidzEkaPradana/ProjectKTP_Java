@@ -6,7 +6,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Set;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -23,10 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.view.RedirectView;
 import pae.jogja.project.ktp.exceptions.NonexistentEntityException;
 
-/**
- *
- * @author user
- */
+
 @Controller
 public class DataController {
     DataJpaController datactrl = new DataJpaController();
@@ -62,17 +58,15 @@ public class DataController {
 
         Data datadat = new Data();
 
-        String idInput = data.getParameter("id");
-        int iid = Integer.parseInt(idInput);
+        int iid = Integer.parseInt(data.getParameter("id"));
         String nonik = data.getParameter("noktp");
         String namaInput = data.getParameter("nama");
-        String tanggal = data.getParameter("tanggal");
-        Date date = new SimpleDateFormat("dd-MM-yyyy").parse(tanggal);
-        String jenis = data.getParameter("jenis");
+        Date date = new SimpleDateFormat("yyyy-MM-dd").parse(data.getParameter("tgllahir"));
+        String jenis = data.getParameter("jeniskelamin");
         String alamatInput = data.getParameter("alamat");
         String agama = data.getParameter("agama");
         String status = data.getParameter("status");
-        String pekerjaan = data.getParameter("kerja");
+        String pekerjaan = data.getParameter("pekerjaan");
         String warganegara = data.getParameter("warganegara");
         String berlaku = "Seumur Hidup";
         byte[] image = multipart.getBytes();
@@ -121,13 +115,13 @@ public class DataController {
         
         int iid = Integer.parseInt(data.getParameter("id"));
         String nonik = data.getParameter("noktp");
-        String namaInput = data.getParameter("name");
+        String namaInput = data.getParameter("nama");
         Date date = new SimpleDateFormat("yyyy-MM-dd").parse(data.getParameter("tgllahir"));
-        String jenis = data.getParameter("gender");
+        String jenis = data.getParameter("jeniskelamin");
         String alamatInput = data.getParameter("alamat");
         String agama = data.getParameter("agama");
         String status = data.getParameter("status");
-        String pekerjaan = data.getParameter("kerja");
+        String pekerjaan = data.getParameter("pekerjaan");
         String warganegara = data.getParameter("warganegara");
         String berlaku = "Seumur Hidup";
         byte[] image = img.getBytes();

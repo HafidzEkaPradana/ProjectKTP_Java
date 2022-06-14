@@ -232,54 +232,54 @@
                         <div class="modal-body">
                             <div class="form-group">
                                 <label>ID</label>
-                                <input type="text" name="id" class="form-control" required>
+                                <input type="text" th:field="*{id}" id="id" class="form-control" required>
                             </div>
                             <div class="form-group">
                                 <label>NIK</label>
-                                <input type="text" name="noktp" class="form-control" required>
+                                <input type="text" th:field="*{noktp}" id="noktp" class="form-control" required>
                             </div>
                             <div class="form-group">
                                 <label>Nama</label>
-                                <input type="text" name="nama" class="form-control" required>
+                                <input type="text" th:field="*{nama}" name="nama" class="form-control" required>
                             </div>
                             <div class="form-group">
                                 <label>Tanggal Lahir</label>
-                                <input type="date" name="tanggal" class="form-control" required>
+                                <input type="date" th:field="*{tgllahir}" name="tanggal" class="form-control" required>
                             </div>
                             <div class="form-group">
                                 <label>Jenis Kelamin</label>
                                 <label>( Laki laki / Perempuan )</label>
-                                <input type="text" name="jenis" class="form-control" required>
+                                <input type="text" th:field="*{jeniskelamin}" name="jenis" class="form-control" required>
                             </div>
                             <div class="form-group">
                                 <label>Alamat</label>
-                                <textarea class="form-control" name="alamat" required></textarea>
+                                <textarea th:field="*{alamat}" class="form-control" name="alamat" required></textarea>
                             </div>
                             <div class="form-group">
                                 <label>Agama</label>
-                                <input type="text" name="agama" class="form-control" required>
+                                <input type="text" th:field="*{agama}" name="agama" class="form-control" required>
                             </div>
                             <div class="form-group">
                                 <label>Status</label>
                                 <label>( Kawin / Belum Kawin )</label>
-                                <input type="text" name="status" class="form-control" required>
+                                <input type="text" th:field="*{status}" name="status" class="form-control" required>
                             </div>
                             <div class="form-group">
                                 <label>Pekerjaan</label>
-                                <input type="text" name="kerja" class="form-control">
+                                <input type="text" th:field="*{pekerjaan}" name="kerja" class="form-control">
                             </div>
                             <div class="form-group">
                                 <label>Kewarganegaraaan</label>
-                                <input type="text"  name="warganegara" class="form-control" required>
+                                <input type="text" th:field="*{warganegara}" name="warganegara" class="form-control" required>
                             </div>
                             <div class="form-group">
                                 <label>Masa Berlaku</label>
-                                <input type="text" name="berlaku" class="form-control" value="Seumur Hidup" disabled>
+                                <input type="text" th:field="*{berlakuhingga}" name="berlaku" class="form-control" value="Seumur Hidup" disabled>
                             </div>
                             <div class="form-group">
                                 <label>Foto</label>
                                 <input type="file" th:field="*{foto}" name="gambar" class="form-control" accept="image/png, image/jpeg, image/jpg" style="margin-bottom:10px " onchange="loadFile(event)">
-                                <p><img id="output" width="200" /></p><hr>
+                                <p><img id="output" width="200" /></p>
                             </div>
                         </div>
                         <div class="modal-footer">

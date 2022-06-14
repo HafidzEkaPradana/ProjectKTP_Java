@@ -196,10 +196,6 @@
                                 <a href="/create" class="btn btn-default" title="Add Data" ><span style="color: #83BD75;">Add New Data</span></a>
                             </div>
                             <div class="col-sm-4">
-                                <div class="search-box">
-                                    <i class="material-icons">&#xE8B6;</i>
-                                    <input type="text" class="form-control" placeholder="Search&hellip;">
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -210,7 +206,6 @@
                                 <th>Nama</th>
                                 <th>Tanggal Lahir</th>
                                 <th>Alamat</th>
-                                <th>Foto</th>
                                 <th style="text-align: center">Actions</th>
                             </tr>
                         </thead>
@@ -220,7 +215,6 @@
                                 <td th:text="${ktpData.nama}"></td>
                                 <td th:text="${#dates.format(ktpData.tgllahir,'dd MMM yyyy')}"></td>
                                 <td th:text="${ktpData.alamat}"></td>
-                                <td th:text="${ktpData.foto}"></td>
                                 <td>
                                     <a th:href="@{/view/{id}(id=${ktpData.id})}" class="view" title="View" data-toggle="tooltip"><i class="material-icons" data-toggle="tooltip" title="View">&#xE417;</i></a>
                                     <a th:href="@{/edit/{id}(id=${ktpData.id})}" class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
@@ -229,7 +223,6 @@
                             </tr>
                         </tbody>
                     </table>
-
                 </div>
             </div>  
         </div>
