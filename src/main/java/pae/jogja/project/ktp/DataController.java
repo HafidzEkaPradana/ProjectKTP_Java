@@ -47,7 +47,7 @@ public class DataController {
 
     @RequestMapping("/create")
     public String createData(Model model) {
-        model.addAttribute("data",data);
+        model.addAttribute("newdata",data);
         return "create";
     }
 
