@@ -1,4 +1,7 @@
-
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package pae.jogja.project.ktp;
 
 import java.io.Serializable;
@@ -33,7 +36,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Data.findByAgama", query = "SELECT d FROM Data d WHERE d.agama = :agama"),
     @NamedQuery(name = "Data.findByStatus", query = "SELECT d FROM Data d WHERE d.status = :status"),
     @NamedQuery(name = "Data.findByPekerjaan", query = "SELECT d FROM Data d WHERE d.pekerjaan = :pekerjaan"),
-    @NamedQuery(name = "Data.findByKewarganegaraan", query = "SELECT d FROM Data d WHERE d.kewarganegaraan = :kewarganegaraan"),
+    @NamedQuery(name = "Data.findByWarganegara", query = "SELECT d FROM Data d WHERE d.warganegara = :warganegara"),
     @NamedQuery(name = "Data.findByBerlakuhingga", query = "SELECT d FROM Data d WHERE d.berlakuhingga = :berlakuhingga")})
 public class Data implements Serializable {
 
@@ -67,8 +70,8 @@ public class Data implements Serializable {
     @Column(name = "pekerjaan")
     private String pekerjaan;
     @Basic(optional = false)
-    @Column(name = "kewarganegaraan")
-    private String kewarganegaraan;
+    @Column(name = "warganegara")
+    private String warganegara;
     @Column(name = "berlakuhingga")
     private String berlakuhingga;
     @Lob
@@ -82,7 +85,7 @@ public class Data implements Serializable {
         this.id = id;
     }
 
-    public Data(Integer id, String noktp, String nama, Date tgllahir, String jeniskelamin, String alamat, String agama, String status, String kewarganegaraan) {
+    public Data(Integer id, String noktp, String nama, Date tgllahir, String jeniskelamin, String alamat, String agama, String status, String warganegara) {
         this.id = id;
         this.noktp = noktp;
         this.nama = nama;
@@ -91,7 +94,7 @@ public class Data implements Serializable {
         this.alamat = alamat;
         this.agama = agama;
         this.status = status;
-        this.kewarganegaraan = kewarganegaraan;
+        this.warganegara = warganegara;
     }
 
     public Integer getId() {
@@ -166,12 +169,12 @@ public class Data implements Serializable {
         this.pekerjaan = pekerjaan;
     }
 
-    public String getKewarganegaraan() {
-        return kewarganegaraan;
+    public String getWarganegara() {
+        return warganegara;
     }
 
-    public void setKewarganegaraan(String kewarganegaraan) {
-        this.kewarganegaraan = kewarganegaraan;
+    public void setWarganegara(String warganegara) {
+        this.warganegara = warganegara;
     }
 
     public String getBerlakuhingga() {

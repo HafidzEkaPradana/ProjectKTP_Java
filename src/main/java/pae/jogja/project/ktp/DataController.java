@@ -33,7 +33,6 @@ public class DataController {
     public String getDataKTP(Model model) {
 
         int record = datactrl.getDataCount();
-
         try {
             newdata = datactrl.findDataEntities().subList(0, record);
         } catch (Exception e) {
@@ -59,9 +58,9 @@ public class DataController {
         String idInput = data.getParameter("id");
         int iid = Integer.parseInt(idInput);
         String nonik = data.getParameter("noktp");
-        String namaInput = data.getParameter("name");
+        String namaInput = data.getParameter("nama");
         String tanggal = data.getParameter("tanggal");
-        Date date = new SimpleDateFormat("yyyy-MM-dd").parse(tanggal);
+        Date date = new SimpleDateFormat("dd-MM-yyyy").parse(tanggal);
         String jenis = data.getParameter("jenis");
         String alamatInput = data.getParameter("alamat");
         String agama = data.getParameter("agama");
@@ -82,7 +81,7 @@ public class DataController {
         datadat.setAgama(agama);
         datadat.setStatus(status);
         datadat.setPekerjaan(pekerjaan);
-        datadat.setKewarganegaraan(warganegara);
+        datadat.setWarganegara(warganegara);
         datadat.setBerlakuhingga(berlaku);
         //datadat.setFoto(image);
 
@@ -91,16 +90,12 @@ public class DataController {
         return "database";
     }
 
-    @RequestMapping("/editpage")
-    public String editPage(Model model) {
-        int record = datactrl.getDataCount();
-
-        try {
-            newdata = datactrl.findDataEntities().subList(0, record);
-        } catch (Exception e) {
-        }
-        model.addAttribute("goData", newdata);
-        model.addAttribute("record", record);
+    @RequestMapping("/edit/{id}")
+    public String editPage(@PathVariable(value = "id")int id, Model model) {
+        
+        Data d = datactrl.findData(id);
+        model.addAttribute("data", d);
+        
         return "editktp";
     }
 
@@ -132,7 +127,7 @@ public class DataController {
         datadat.setAgama(agama);
         datadat.setStatus(status);
         datadat.setPekerjaan(pekerjaan);
-        datadat.setKewarganegaraan(warganegara);
+        datadat.setWarganegara(warganegara);
         datadat.setBerlakuhingga(berlaku);
         //datadat.setFoto(image);
 
@@ -143,9 +138,8 @@ public class DataController {
 
     @GetMapping("/delete/{id}")
     public String deleteData(@PathVariable(value = "id")int id) throws NonexistentEntityException {
-        //int idD = datactrl.getDataCount();
         datactrl.destroy(id);
-        return "database/data";
+        return "database";
     }
 
     @RequestMapping("/view")

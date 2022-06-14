@@ -194,46 +194,46 @@
                             <h4 class="modal-title">Lihat Data E-KTP</h4>
 
                         </div>
-                        <div class="modal-body" th:each="ktpData:${goData}">					
+                        <div class="modal-body" th:each="dataKtp:${goData}">					
                             <div class="form-group">
                                 <label>NIK</label><br>
-                                <td th:text="${ktpData.noktp}"></td>
+                                <td th:text="${dataKtp.noktp}"></td>
                             </div>
                             <div class="form-group">
                                 <label>Nama</label><br>
-                                <td th:text="${ktpData.nama}"></td>
+                                <td th:text="${dataKtp.nama}"></td>
                             </div>
                             <div class="form-group">
                                 <label>Tanggal Lahir</label><br>
-                                <td th:text="${#dates.format(ktpData.tgllahir,'dd MMMM yyyy')}"></td>
+                                <td th:text="${#dates.format(dataKtp.tgllahir,'dd MMMM yyyy')}"></td>
                             </div>
                             <div class="form-group">
                                 <label>Jenis Kelamin</label><br>
-                                <td th:text="${ktpData.jeniskelamin}"></td>
+                                <td th:text="${dataKtp.jeniskelamin}"></td>
                             </div>
                             <div class="form-group">
                                 <label>Alamat</label><br>                                
-                                <td th:text="${ktpData.alamat}"></td>
+                                <td th:text="${dataKtp.alamat}"></td>
                             </div>
                             <div class="form-group">
                                 <label>Agama</label><br>
-                                <td th:text="${ktpData.agama}"></td>
+                                <td th:text="${dataKtp.agama}"></td>
                             </div>
                             <div class="form-group">
                                 <label>Status</label><br>
-                                <td th:text="${ktpData.status}"></td>
+                                <td th:text="${dataKtp.status}"></td>
                             </div>
                             <div class="form-group">
                                 <label>Pekerjaan</label><br>
-                                <td th:text="${ktpData.pekerjaan}"></td>
+                                <td th:text="${dataKtp.pekerjaan}"></td>
                             </div>
                             <div class="form-group">
                                 <label>Kewarganegaraan</label><br>
-                                <td th:text="${ktpData.kewarganegaraan}"></td>
+                                <td th:text="${dataKtp.warganegara}"></td>
                             </div>
                             <div class="form-group">
                                 <label>Masa Berlaku</label><br>
-                                <td th:text="${ktpData.berlakuhingga}"></td>
+                                <td th:text="${dataKtp.berlakuhingga}"></td>
                             </div>
                             <hr>
                         </div>

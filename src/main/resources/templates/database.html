@@ -250,7 +250,6 @@
                         </thead>
                         <tbody>
                             <tr th:each="ktpData,number:${goData}">
-                                <!-- <td th:text="${number.count}"></td> --> 
                                 <td th:text="${ktpData.noktp}"></td>
                                 <td th:text="${ktpData.nama}"></td>
                                 <td th:text="${#dates.format(ktpData.tgllahir,'dd MMM yyyy')}"></td>
