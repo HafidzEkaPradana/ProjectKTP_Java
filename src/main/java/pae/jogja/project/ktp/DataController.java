@@ -149,6 +149,11 @@ public class DataController {
         datactrl.destroy(id);
         return "redirect:/data";
     }
+    
+    @RequestMapping("/main")
+    public String getMain() {
+        return "index";
+    }
 
     @RequestMapping("/view/{id}")
     public String viewData(@PathVariable int id, Model model) throws NonexistentEntityException {
