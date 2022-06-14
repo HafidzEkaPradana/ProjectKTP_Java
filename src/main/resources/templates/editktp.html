@@ -225,7 +225,7 @@
         <div class="container-xl">
             <div class="table-responsive">
                 <div class="table-wrapper">
-                    <form action="/edit">
+                    <form action="/update">
                         <table th:each="ktpData:${goData}" class="table table-striped table-hover table-bordered">
                             <div class="modal-header">						
                                 <h4 class="modal-title">Edit Data E-KTP</h4>
@@ -271,7 +271,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Kewarganegaraaan</label>
-                                    <input type="text" th:value="${ktpData.kewarganegaraan}" name="warganegara" class="form-control" required>
+                                    <input type="text" th:value="${ktpData.warganegara}" name="warganegara" class="form-control" required>
                                 </div>
                                 <div class="form-group">
                                     <label>Masa Berlaku</label>

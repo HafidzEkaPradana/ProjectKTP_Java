@@ -249,15 +249,15 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr th:each="ktpData,number:${goData}">
+                            <tr th:each="ktpData:${goData}">
                                 <td th:text="${ktpData.noktp}"></td>
                                 <td th:text="${ktpData.nama}"></td>
                                 <td th:text="${#dates.format(ktpData.tgllahir,'dd MMM yyyy')}"></td>
                                 <td th:text="${ktpData.alamat}"></td>
                                 <td>
-                                    <a th:href="@{/view(${ktpData.id})}" class="view" title="View" data-toggle="tooltip"><i class="material-icons" data-toggle="tooltip" title="View">&#xE417;</i></a>
-                                    <a th:href="@{/editpage(${ktpData.id})}" class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-                                    <a th:href="@{/delete(${ktpData.id})}" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                                    <a th:href="@{/view/{id}(id=${ktpData.id})}" class="view" title="View" data-toggle="tooltip"><i class="material-icons" data-toggle="tooltip" title="View">&#xE417;</i></a>
+                                    <a th:href="@{/edit/{id}(id=${ktpData.id})}" class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                                    <a th:href="@{/delete/{id}(id=${ktpData.id})}" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
                                 </td>
                             </tr>
                         </tbody>

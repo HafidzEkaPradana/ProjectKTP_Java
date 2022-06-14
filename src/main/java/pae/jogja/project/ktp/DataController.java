@@ -7,16 +7,12 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
-//import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-//import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pae.jogja.project.ktp.exceptions.NonexistentEntityException;
-//import org.springframework.web.bind.annotation.RequestParam;
-//import org.springframework.web.multipart.MultipartFile;
 
 /**
  *
@@ -45,8 +41,8 @@ public class DataController {
     }
 
     @RequestMapping("/create")
-    public String createData() {
-
+    public String createData(Model model) {
+        model.addAttribute("data",data);
         return "create";
     }
 
@@ -93,13 +89,13 @@ public class DataController {
     @RequestMapping("/edit/{id}")
     public String editPage(@PathVariable(value = "id")int id, Model model) {
         
-        Data d = datactrl.findData(id);
-        model.addAttribute("data", d);
+        data = datactrl.findData(id);
+        model.addAttribute("goData", data);
         
         return "editktp";
     }
 
-    @RequestMapping("/edit")
+    @RequestMapping("/update")
     public String editData(Model model, HttpServletRequest data) throws ParseException, Exception {
 
         Data datadat = new Data();
@@ -142,16 +138,14 @@ public class DataController {
         return "database";
     }
 
-    @RequestMapping("/view")
-    public String viewData(Model model) {
-        int record = datactrl.getDataCount();
+    @RequestMapping("/view/{id}")
+    public String viewData(@PathVariable int id, Model model) throws NonexistentEntityException {
 
         try {
-            newdata = datactrl.findDataEntities().subList(0, record);
+            data = datactrl.findData(id);
         } catch (Exception e) {
         }
-        model.addAttribute("goData", newdata);
-        model.addAttribute("record", record);
+        model.addAttribute("goData", data);
 
         return "viewktp";
     }
