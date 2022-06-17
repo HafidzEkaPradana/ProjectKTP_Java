@@ -182,6 +182,10 @@
                                 <label>Masa Berlaku</label><br>
                                 <td th:text="${dataKtp.berlakuhingga}"></td>
                             </div>
+                            <div class="form-group">
+                                <label>Foto</label><br>
+                                <td><img th:src="*{'data:image/png;base64,' +gambar}" height="200px"></td>
+                            </div>
                         </div>
                         <div class="modal-footer">
                             <a class="btn btn-outline-success px-4 gap-3" href="/data" value="Kembali">Kembali</a>

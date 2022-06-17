@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
+import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -15,7 +16,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -28,6 +28,7 @@ public class DataController {
     DataJpaController datactrl = new DataJpaController();
     Data data = new Data();
     List<Data> newdata = new ArrayList<>();
+    
 
     @RequestMapping("/data")
     //@ResponseBody
@@ -88,21 +89,24 @@ public class DataController {
 
         return new RedirectView("/data");
     }
-    
-    @RequestMapping(value = "/gambar", method = RequestMethod.GET, produces = {
-        MediaType.IMAGE_PNG_VALUE, MediaType.IMAGE_JPEG_VALUE
-    })
     public ResponseEntity<byte[]> getImg(@RequestParam("id") int id) throws Exception {
         data = datactrl.findData(id);
         byte[] image = data.getFoto();
         return ResponseEntity.ok().contentType(MediaType.IMAGE_JPEG).body(image);
     }
-
+    
+    byte[] img_buffer;
     @RequestMapping("/edit/{id}")
-    public String editPage(@PathVariable(value = "id")int id, Model model) {
+    public String editPage(@PathVariable(value = "id")int id, Model model)throws NonexistentEntityException {
+        try {
+            data = datactrl.findData(id);
+        } catch (Exception e) {
+        }
+        img_buffer = data.getFoto();
+        String gambar = Base64.encodeBase64String(data.getFoto());
         
-        data = datactrl.findData(id);
         model.addAttribute("goData", data);
+        model.addAttribute("gambar", gambar);
         
         return "editktp";
     }
@@ -154,7 +158,8 @@ public class DataController {
     public String getMain() {
         return "index";
     }
-
+    
+    byte[] image_buffer;
     @RequestMapping("/view/{id}")
     public String viewData(@PathVariable int id, Model model) throws NonexistentEntityException {
 
@@ -162,7 +167,10 @@ public class DataController {
             data = datactrl.findData(id);
         } catch (Exception e) {
         }
+        image_buffer = data.getFoto();
+        String gambar = Base64.encodeBase64String(data.getFoto());
         model.addAttribute("goData", data);
+        model.addAttribute("gambar", gambar);
 
         return "viewktp";
     }
